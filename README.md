@@ -14,4 +14,4 @@ Instruction to run the application
  4) Type "python word_counter.py input.txt" (input.txt can be replace with the file you create)
 
 For Test Case
-    . Type python word_count_test_cases.py 
+ 1)Type "python word_count_test_cases.py" 
