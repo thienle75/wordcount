@@ -1,7 +1,6 @@
 import operator
 import itertools
 import os
-import enchant
 
 class WordCount:
 
@@ -99,12 +98,11 @@ class WordCount:
     #================================================================== 
 
     def createDictionary(self,lines) :
-        d = enchant.Dict("en_US")
         if len(lines) > 1:
             for line in range(len(lines)):
                 for nextline in range(line+1,len(lines)):
                     temp = self.longestCommonSubstring(lines[line],lines[nextline])
-                    if temp == '' or d.check(temp) == False:
+                    if temp == '' :
                         continue
                     if temp in self.dictionary:
                         self.dictionary[temp] +=1
