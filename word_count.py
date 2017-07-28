@@ -6,7 +6,7 @@ if len(sys.argv) == 1:
     print("You can also give filename as a command line argument")
     filename = input("Enter Filename: ")
 else:
-    filename = sys.argv[1].lower()
+    filename = sys.argv[1]
 
 my_file = Path(filename)
 if my_file.is_file():
