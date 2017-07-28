@@ -13,5 +13,4 @@ Instruction to run the application
  3) Create UTF-8 plain text file
  4) Type "python word_counter.py input.txt" (input.txt can be replace with the file you create)
 
-For Test Case
- 1)Type "python word_count_test_cases.py" 
+For Test Case, Type "python word_count_test_cases.py" 
