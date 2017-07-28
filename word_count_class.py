@@ -131,6 +131,6 @@ class WordCount:
     #================================================================== 
             
     def printLongString(self):
-        longsublist = itertools.islice(sorted(self.dictionary.items(),key = lambda t:t[0],reverse = True),0,100000)
+        longsublist = itertools.islice(sorted(self.dictionary.items(),key = lambda t:len(t[0]),reverse = True),0,100000)
         for key,value in longsublist:
             print("word : "+str(key), "count : "+str(value))  
