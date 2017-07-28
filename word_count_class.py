@@ -46,7 +46,7 @@ class WordCount:
             content = infile.read()  # read content of the file
             infile.close() # close the file when finish reading
             if content != '' :
-                words = content.lower().split()
+                words = [x.strip() for x in cont.split(',')]
                 for each_word in words:
                     word = self.cleanUpWord(each_word)
                     if word == '':
@@ -102,7 +102,7 @@ class WordCount:
             for line in range(len(lines)):
                 for nextline in range(line+1,len(lines)):
                     temp = self.longestCommonSubstring(lines[line],lines[nextline])
-                    if temp == '' :
+                    if temp == '' or len(temp) < 5:
                         continue
                     if temp in self.dictionary:
                         self.dictionary[temp] +=1
@@ -119,7 +119,7 @@ class WordCount:
             content = infile.read()  # read content of the file
             infile.close() # close the file when finish reading
             if content != '' :
-                lines = content.lower().split(',')
+                lines = [x.strip() for x in content.split(',')]
                 self.createDictionary(lines)
             else:
                 print('File is empty')
@@ -131,6 +131,6 @@ class WordCount:
     #================================================================== 
             
     def printLongString(self):
-        longsublist = itertools.islice(sorted(self.dictionary.items(),key = lambda t:t[0],reverse = True),0,10)
+        longsublist = itertools.islice(sorted(self.dictionary.items(),key = lambda t:t[0],reverse = True),0,100000)
         for key,value in longsublist:
             print("word : "+str(key), "count : "+str(value))  
