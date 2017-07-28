@@ -14,3 +14,6 @@ Instruction to run the application
  4) Type "python word_counter.py input.txt" (input.txt can be replace with the file you create)
 
 For Test Case, Type "python word_count_test_cases.py" 
+
+Instruction to run the second application
+ 1) Type "python festival_names.py input2.txt" 
