@@ -28,7 +28,7 @@ class WordCount:
     # Clean up each word
     #==================================================================        
     def cleanUpWord(self,word):
-            symbols = "!@#$%^&*(){}:\"<>?,./;'[]'"
+            symbols = "!@#$%^&*(){}:\"<>?,./;'[]'' '"
             for i in range(0, len(symbols)):
                 word = word.replace(symbols[i],"")
             if len(word) > 0 :
@@ -99,15 +99,14 @@ class WordCount:
 
     def createDictionary(self,lines) :
         if len(lines) > 1:
-            for line in range(len(lines)):
-                for nextline in range(line+1,len(lines)):
-                    temp = self.longestCommonSubstring(lines[line],lines[nextline])
-                    if temp == '' or len(temp) < 5:
-                        continue
-                    if temp in self.dictionary:
-                        self.dictionary[temp] +=1
-                    else:
-                        self.dictionary[temp] = 1
+            for line in range(0,len(lines)-1):
+                temp = self.longestCommonSubstring(self.cleanUpWord(lines[line]),self.cleanUpWord(lines[line+1]))
+                if temp == '' or len(temp) < 5 or ',' in temp:
+                    continue
+                if temp in self.dictionary:
+                    self.dictionary[temp] +=1
+                else:
+                    self.dictionary[temp] = 1
 
     #==================================================================
     # Read input file , split into words and store in an array and store
@@ -115,14 +114,12 @@ class WordCount:
     #==================================================================
     def readCommonDelimeterFile(self):
         if self.validateFile():
-            infile = open(self.filename,'r') # open the file to read
-            content = infile.read()  # read content of the file
-            infile.close() # close the file when finish reading
-            if content != '' :
-                lines = [x.strip() for x in content.split(',')]
+            with open(self.filename) as infile: # open the file to read
+                content = infile.readlines()  # read content of the file
+                if content != '' :
+                    lines = [x.strip() for x in content]
                 self.createDictionary(lines)
-            else:
-                print('File is empty')
+            infile.close() # close the file when finish reading
         else:
             print('Invalid file Type')
     
